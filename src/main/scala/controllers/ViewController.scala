@@ -8,7 +8,14 @@ class ViewController extends ScalatraServlet with ScalateSupport  {
 
   get("/") {
     contentType="text/html"
-    jade("/index")
+    jade("index")
+  }
+
+  get("/:page") {
+    findTemplate(params("page")) map { path =>
+      contentType = "text/html"
+      jade(path)
+    } orElse serveStaticResource() getOrElse resourceNotFound()
   }
 
   get("/partials/:page") {

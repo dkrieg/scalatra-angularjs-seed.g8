@@ -1,7 +1,13 @@
-@MyCtrl1 = ($scope) ->
+@MenuCtrl = ($scope) ->
+  menus = $scope.menus = [
+    {selected: true, title: "Home", href: "/#/home"},
+    {selected: false, title: "About", href: "/#/about"},
+    {selected: false, title: "Demo", href: "/#/demo"}
+  ]
 
-@MyCtrl1.$inject = []
+  $scope.click = (menu) ->
+    angular.forEach(menus, (m) -> m.selected = false;return)
+    menu.selected = true
+    return
 
-@MyCtrl2 = ($scope) ->
-
-@MyCtrl2.$inject = []
+  return

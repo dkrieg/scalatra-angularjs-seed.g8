@@ -1,0 +1,27 @@
+- import java.text.SimpleDateFormat
+- import java.util.Date
+
+-@ val format: SimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd")
+-@ val now: String = format.format(new Date)
+-@ val currency: String = "123456"
+-@ val num: String = "98765.4321"
+
+.container
+  h1 This is the partial for view 3.
+
+  .well.span5
+    tabs
+      pane(title="Hello World")
+        label Name:
+        input(type="text" ng-model="yourName" placeholder="Enter a name here")
+        hr
+        h2 Hello {{yourName}}!
+      pane(title="Localization")
+        = "Date: {{ '2012-04-01' | date:'fullDate' }}"
+        <br/>
+        = "Currency: {{ 123456 | currency }}"
+        <br/>
+        = "Number: {{ 98765.4321 | number }}"
+        <br/>
+      pane(title="Todo List")
+        b TODO:

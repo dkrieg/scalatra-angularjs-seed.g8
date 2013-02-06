@@ -1,20 +1,21 @@
 -@ val body: String
+-@ val title: String = "Enter your layout title here"
+-@ val appName: String = "myApp"
 
-!!!
-html(lang="en" ng-app="myApp")
+!!! 5
+html(lang="en" ng-app=appName)
   head
     meta(charset="utf-8")
-    title My Scalate AngularJS App
+    title=title
     link(rel="stylesheet" href="/compiled/styles.css")
+    link(rel="stylesheet" href="")
+    link(href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap.min.css" rel="stylesheet")
+    :css
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
   body
-    ul.menu
-      li
-        a(href="#/view1") view1
-        a(href="#/view2") view2
-
     !~~ body
-
-    div Angular seed app: version <span app-version></span>
-
     script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js")
     script(src="/compiled/scripts.js")
+    script(src="/tabs.js")
