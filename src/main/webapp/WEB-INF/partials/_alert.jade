@@ -1,0 +1,15 @@
+section(id="alert")
+  .well.span10
+    .page-header
+      h2 Alert
+    .span4(ng-controller="AlertDemoCtrl")
+      alert(ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)") {{alert.msg}}
+      button.btn(ng-click="addAlert()") Add Alert
+    .span5
+      h3 Description
+      :markdown
+        Alert is an AngularJS-version of bootstrap's alert.
+
+        This directive can be used to generate alerts from the dynamic model data (using the ng-repeat directive);
+
+        Directive is found in the module [ui.bootstrap.alert](https://github.com/angular-ui/bootstrap/tree/master/src/alert)

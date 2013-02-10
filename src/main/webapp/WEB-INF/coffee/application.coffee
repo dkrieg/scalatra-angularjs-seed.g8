@@ -1,14 +1,23 @@
-angular.module("myApp", ["myApp.filters", "myApp.services", "myApp.directives"]).config ["$routeProvider", ($routeProvider) ->
-  $routeProvider.when "/home",
-    templateUrl: "/partials/home"
+requires = [
+  "myApp.controllers",
+  "myApp.filters",
+  "myApp.services",
+  "myApp.directives",
+  "ui.bootstrap"
+]
 
-  $routeProvider.when "/about",
-    templateUrl: "/partials/about"
+angular.module("myApp", requires).
 
-  $routeProvider.when "/demo",
-    templateUrl: "/partials/demo"
+config ["$routeProvider", ($routeProvider) ->
+  $routeProvider
+    .when "/home",
+      templateUrl: "/partials/home"
 
-  $routeProvider.otherwise redirectTo: "/home"
+    .when "/about",
+      templateUrl: "/partials/about"
 
-  return
+    .when "/demo",
+      templateUrl: "/partials/demo"
+
+    .otherwise redirectTo: "/home"
 ]
