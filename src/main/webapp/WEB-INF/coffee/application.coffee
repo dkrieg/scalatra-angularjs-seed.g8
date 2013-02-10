@@ -6,9 +6,9 @@ requires = [
   "ui.bootstrap"
 ]
 
-angular.module("myApp", requires).
+module = angular.module("myApp", requires)
 
-config ["$routeProvider", ($routeProvider) ->
+module.config ["$routeProvider", ($routeProvider) ->
   $routeProvider
     .when "/home",
       templateUrl: "/partials/home"

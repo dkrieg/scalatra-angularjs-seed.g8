@@ -1,6 +1,6 @@
-angular.module("myApp.filters", []).
+module = angular.module("myApp.filters", [])
 
-filter "interpolate", ["version", (version) ->
+module.filter "interpolate", ["version", (version) ->
   (text) ->
     String(text).replace /\%VERSION\%/g, version
 ]
