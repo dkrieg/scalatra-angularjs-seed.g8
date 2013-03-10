@@ -3,4 +3,3 @@ require.config
   paths:
     mocks: EnvJasmine.mocksDir
     specs: EnvJasmine.specsDir
-    jquery: 'lib/jquery-1.8.1'

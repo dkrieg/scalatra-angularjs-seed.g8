@@ -105,7 +105,7 @@ jasmineTestDir <+= resourceManaged { src => src / "test" / "js" }
 
 jasmineConfFile <+= resourceManaged { src => src / "test" / "js" / "test.dependencies.js" }
 
-jasmineRequireJsFile <+= resourceManaged { src => src / "test" / "js" / "lib" / "require-2.0.6.js" }
+jasmineRequireJsFile <+= resourceManaged { src => src / "test" / "js-lib" / "require-2.0.6.js" }
 
 jasmineRequireConfFile <+= resourceManaged { src => src / "test" / "js" / "require.conf.js" }
 
