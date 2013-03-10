@@ -1,7 +1,12 @@
 libraryDependencies += "com.github.siasia" %% "xsbt-web-plugin" % "0.12.0-0.2.11.1"
 
-resolvers += Resolver.url("sbt-plugin-snapshots",
-  new URL("http://scalasbt.artifactoryonline.com/scalasbt/sbt-plugin-snapshots/"))(
-    Resolver.ivyStylePatterns)
+addSbtPlugin("com.timushev.sbt" % "sbt-updates" % "0.1.0")
 
-addSbtPlugin("com.bowlingx" % "xsbt-wro4j-plugin" % "0.2.0-SNAPSHOT")
+addSbtPlugin("com.github.gseitz" % "sbt-release" % "0.6")
+
+addSbtPlugin("net.virtual-void" % "sbt-dependency-graph" % "0.7.0")
+
+addSbtPlugin("com.untyped" %% "sbt-js" % "0.5")
+
+addSbtPlugin("com.untyped" %% "sbt-less" % "0.5")
+

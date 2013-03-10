@@ -1,16 +1,87 @@
-import com.bowlingx.sbt.plugins.Wro4jPlugin._
-import Wro4jKeys._
+name := "scalatra-angularjs-seed"
+
+description := "This is a full-stack starter project using Scalatra, AngularJS, and other great tools"
+
+homepage := Some(url("https://github.com/dkrieg/scalatra-angularjs-seed"))
+
+startYear := Some(2013)
+
+scmInfo := Some(
+  ScmInfo(
+    url("https://github.com/dkrieg/scalatra-angularjs-seed"),
+    "scm:git:https://github.com/dkrieg/scalatra-angularjs-seed",
+    Some("scm:git:git@github.com:dkrieg/scalatra-angularjs-seed.git")
+  )
+)
 
 scalaVersion := "2.10.0"
+
+crossScalaVersions := Seq(
+  "2.9.3-RC1",
+  "2.9.2",
+  "2.9.1", "2.9.1-1",
+  "2.9.0", "2.9.0-1",
+  "2.8.0", "2.8.1", "2.8.2"
+)
+
+scalacOptions ++= Seq(
+  "-deprecation",
+  "-unchecked",
+  "-encoding", "UTF-8"
+  // "-Xcheckinit" // for debugging only, see https://github.com/paulp/scala-faq/wiki/Initialization-Order
+  // "-optimise"   // this option will slow your build
+)
+
+scalacOptions ++= Seq(
+  "-Yclosure-elim",
+  "-Yinline"
+)
+
+scalacOptions <++= scalaVersion map { sv =>
+  if (sv startsWith "2.10") List(
+    "-Xverify",
+    "-Ywarn-all",
+    "-feature"
+    // "-language:postfixOps",
+    // "-language:reflectiveCalls",
+    // "-language:implicitConversions"
+    // "-language:higherKinds",
+    // "-language:existentials",
+    // "-language:experimental.macros",
+    // "-language:experimental.dynamics"
+  )
+  else Nil
+}
+
+javacOptions ++= Seq("-Xlint:unchecked", "-Xlint:deprecation")
 
 classpathTypes ~= (_ + "orbit")
 
 seq(webSettings :_*)
 
-seq(wro4jSettings: _*)
+seq(jsSettings : _*)
 
-// Add compiled files to your war file:
-(webappResources in Compile) <+= (targetFolder in generateResources in Compile)
+(webappResources in Compile) <+= (resourceManaged in Compile)
+
+(sourceDirectory in (Compile, JsKeys.js)) <<= (sourceDirectory in Compile)(_ / "coffee")
+
+(resourceGenerators in Compile) <+= (JsKeys.js in Compile)
+
+(compile in Compile) <<= compile in Compile dependsOn (JsKeys.js in Compile)
+
+(JsKeys.prettyPrint in (Compile, JsKeys.js)) := true
+
+seq(lessSettings : _*)
+
+(webappResources in Compile) <+= (resourceManaged in Compile)
+
+(sourceDirectory in (Compile, LessKeys.less)) <<= (sourceDirectory in Compile)(_ / "less")
+
+(resourceGenerators in Compile) <+= (LessKeys.less in Compile)
+
+(compile in Compile) <<= compile in Compile dependsOn (LessKeys.less in Compile)
+
+(LessKeys.prettyPrint in (Compile, LessKeys.less)) := true
 
 libraryDependencies ++= Seq(
   "org.scalatra" %% "scalatra" % "2.2.0-RC3",

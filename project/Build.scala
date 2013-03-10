@@ -14,17 +14,23 @@ object Build extends Build {
     try {
       log info "Launching browser."
       java.awt.Desktop.getDesktop.browse(url.toURI)
-    }
-    catch {
+    } catch {
       case _ => {
         log info { "Could not open browser, sorry. Open manually to %s." format url.toExternalForm }
       }
     }
   }
 
-  lazy val project = Project (
+  val gc = TaskKey[Unit]("gc", "runs garbage collector")
+  val gcTask = gc := {
+    println("requesting garbage collection")
+    System gc()
+  }
+
+
+  lazy val project = Project(
     "project",
     file("."),
-    settings = Defaults.defaultSettings ++ Seq(browseTask)
+    settings = Defaults.defaultSettings ++ Seq(browseTask, gcTask)
   )
 }
