@@ -61,27 +61,55 @@ seq(webSettings :_*)
 
 seq(jsSettings : _*)
 
-(webappResources in Compile) <+= (resourceManaged in Compile)
-
 (sourceDirectory in (Compile, JsKeys.js)) <<= (sourceDirectory in Compile)(_ / "coffee")
+
+(sourceDirectory in (Test, JsKeys.js)) <<= (sourceDirectory in Test)(_ / "coffee")
+
+(resourceManaged in (Compile, JsKeys.js)) <<= (resourceManaged in (Compile, JsKeys.js))(_ / "js")
 
 (resourceGenerators in Compile) <+= (JsKeys.js in Compile)
 
 (compile in Compile) <<= compile in Compile dependsOn (JsKeys.js in Compile)
 
+(compile in Test) <<= compile in Test dependsOn (JsKeys.js in Test)
+
+(resourceManaged in (Test, JsKeys.js)) <<= (resourceManaged in (Test, JsKeys.js))(_ / "js")
+
 (JsKeys.prettyPrint in (Compile, JsKeys.js)) := true
+
+(JsKeys.prettyPrint in (Test, JsKeys.js)) := true
+
+(webappResources in Compile) <+= (resourceManaged in Compile)(_ / "js")
 
 seq(lessSettings : _*)
 
-(webappResources in Compile) <+= (resourceManaged in Compile)
-
 (sourceDirectory in (Compile, LessKeys.less)) <<= (sourceDirectory in Compile)(_ / "less")
+
+(resourceManaged in (Compile, LessKeys.less)) <<= (resourceManaged in (Compile, LessKeys.less))(_ / "css")
 
 (resourceGenerators in Compile) <+= (LessKeys.less in Compile)
 
 (compile in Compile) <<= compile in Compile dependsOn (LessKeys.less in Compile)
 
 (LessKeys.prettyPrint in (Compile, LessKeys.less)) := true
+
+(webappResources in Compile) <+= (resourceManaged in Compile)(_ / "css")
+
+seq(jasmineSettings : _*)
+
+appJsDir <+= resourceManaged { src => src / "main" / "js" }
+
+appJsLibDir <+= sourceDirectory { src => src / "main" / "webapp" / "js" }
+
+jasmineTestDir <+= resourceManaged { src => src / "test" / "js" }
+
+jasmineConfFile <+= resourceManaged { src => src / "test" / "js" / "test.dependencies.js" }
+
+jasmineRequireJsFile <+= resourceManaged { src => src / "test" / "js" / "lib" / "require-2.0.6.js" }
+
+jasmineRequireConfFile <+= resourceManaged { src => src / "test" / "js" / "require.conf.js" }
+
+(test in Test) <<= (test in Test) dependsOn (jasmine)
 
 libraryDependencies ++= Seq(
   "org.scalatra" %% "scalatra" % "2.2.0-RC3",
