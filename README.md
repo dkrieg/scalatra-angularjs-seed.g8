@@ -12,3 +12,5 @@ The following SBT plugins and application libraries are integrated in the build:
   * Twitter Bootstrap CSS
   * Scalatra
   * Scalate
+  * Swagger
+  * JSON4S Jackson
