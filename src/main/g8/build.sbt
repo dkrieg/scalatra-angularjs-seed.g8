@@ -1,16 +1,20 @@
-name := "scalatra-angularjs-seed"
+name := "$name;format="norm"$"
 
-description := "This is a full-stack starter project using Scalatra, AngularJS, and other great tools"
+description := "$description$"   
 
-homepage := Some(url("https://github.com/dkrieg/scalatra-angularjs-seed"))
+organization := "$project_group_id$"
 
-startYear := Some(2013)
+version := "$version$"
+
+homepage := Some(url("https://github.com/$github_username$/$name;format="norm"$"))
+
+startYear := Some($year$)
 
 scmInfo := Some(
   ScmInfo(
-    url("https://github.com/dkrieg/scalatra-angularjs-seed"),
-    "scm:git:https://github.com/dkrieg/scalatra-angularjs-seed",
-    Some("scm:git:git@github.com:dkrieg/scalatra-angularjs-seed.git")
+    url("https://github.com/$github_username$/$name;format="norm"$"),
+    "scm:git:https://github.com/$github_username$/$name;format="norm"$",
+    Some("scm:git:git@github.com:$github_username$/$name;format="norm"$.git")
   )
 )
 
@@ -112,11 +116,11 @@ jasmineRequireConfFile <+= resourceManaged { src => src / "test" / "js" / "requi
 (test in Test) <<= (test in Test) dependsOn (jasmine)
 
 libraryDependencies ++= Seq(
-  "org.scalatra" %% "scalatra" % "2.2.0-RC3",
-  "org.scalatra" %% "scalatra-scalate" % "2.2.0-RC3",
-  "org.scalatra" %% "scalatra-scalatest" % "2.2.0-RC3" % "test",
-  "org.scalatra" %% "scalatra-json" % "2.2.0-RC3",
-  "org.scalatra" %% "scalatra-swagger"  % "2.2.0-RC3",
+  "org.scalatra" %% "scalatra" % "$scalatra_version$",
+  "org.scalatra" %% "scalatra-scalate" % "$scalatra_version$",
+  "org.scalatra" %% "scalatra-scalatest" % "$scalatra_version$" % "test",
+  "org.scalatra" %% "scalatra-json" % "$scalatra_version$",
+  "org.scalatra" %% "scalatra-swagger"  % "$scalatra_version$",
   "org.fusesource.scalamd" % "scalamd_2.10" % "1.6",
   "org.json4s"   %% "json4s-jackson" % "3.1.0",
   "com.wordnik" % "swagger-core_2.10.0" % "1.2.0",
