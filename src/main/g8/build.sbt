@@ -1,7 +1,5 @@
 name := "$name;format="norm"$"
 
-description := "$description$"   
-
 organization := "$project_group_id$"
 
 version := "$version$"
