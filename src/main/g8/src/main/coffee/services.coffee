@@ -1,3 +1,3 @@
-module = angular.module("myApp.services", [])
+module = angular.module("$name;format="camel"$.services", [])
 
-module.value "version", "0.1"
+module.value "version", "$version$"

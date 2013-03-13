@@ -1,7 +1,8 @@
 scalatra-angularjs-seed
 =======================
 
-This project is an application skeleton for a Scalatra + AngularJS web app. You can use it to quickly bootstrap new development projects with this application stack.
+This project is a g8 template for a Scalatra + AngularJS web app. 
+You can use it to quickly bootstrap new development projects with this application stack.
 
 The following SBT plugins and application libraries are integrated in the build:
   * CoffeeScript
@@ -13,4 +14,5 @@ The following SBT plugins and application libraries are integrated in the build:
   * Scalatra
   * Scalate
   * Swagger
-  * JSON4S Jackson
+  * JSON4S Jackson 
+  * ScalaTest

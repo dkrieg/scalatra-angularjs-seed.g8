@@ -1,23 +1,9 @@
 requires = [
-  "myApp.controllers",
-  "myApp.filters",
-  "myApp.services",
-  "myApp.directives",
+  "$name;format="camel"$.controllers",
+  "$name;format="camel"$.filters",
+  "$name;format="camel"$.services",
+  "$name;format="camel"$.directives",
   "ui.bootstrap"
 ]
 
-module = angular.module("myApp", requires)
-
-module.config ["$routeProvider", ($routeProvider) ->
-  $routeProvider
-    .when "/home",
-      templateUrl: "/partials/home"
-
-    .when "/about",
-      templateUrl: "/partials/about"
-
-    .when "/demo",
-      templateUrl: "/partials/demo"
-
-    .otherwise redirectTo: "/home"
-]
+module = angular.module("$name;format="camel"$", requires)
