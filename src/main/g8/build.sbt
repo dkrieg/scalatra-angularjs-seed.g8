@@ -65,17 +65,17 @@ seq(jsSettings : _*)
 
 (sourceDirectory in (Compile, JsKeys.js)) <<= (sourceDirectory in Compile)(_ / "coffee")
 
-(sourceDirectory in (Test, JsKeys.js)) <<= (sourceDirectory in Test)(_ / "coffee")
+(sourceDirectory in (Test, JsKeys.js)) <<= (sourceDirectory in Test)(_ / "unit" / "coffee")
 
 (resourceManaged in (Compile, JsKeys.js)) <<= (resourceManaged in (Compile, JsKeys.js))(_ / "js")
+
+(resourceManaged in (Test, JsKeys.js)) <<= (resourceManaged in (Test, JsKeys.js))(_ / "unit" / "js")
 
 (resourceGenerators in Compile) <+= (JsKeys.js in Compile)
 
 (compile in Compile) <<= compile in Compile dependsOn (JsKeys.js in Compile)
 
 (compile in Test) <<= compile in Test dependsOn (JsKeys.js in Test)
-
-(resourceManaged in (Test, JsKeys.js)) <<= (resourceManaged in (Test, JsKeys.js))(_ / "js")
 
 (JsKeys.prettyPrint in (Compile, JsKeys.js)) := true
 
@@ -103,13 +103,13 @@ appJsDir <+= resourceManaged { src => src / "main" / "js" }
 
 appJsLibDir <+= sourceDirectory { src => src / "main" / "webapp" / "js" }
 
-jasmineTestDir <+= resourceManaged { src => src / "test" / "js" }
+jasmineTestDir <+= resourceManaged { src => src  / "test" / "unit" / "js" }
 
-jasmineConfFile <+= resourceManaged { src => src / "test" / "js" / "test.dependencies.js" }
+jasmineConfFile <+= resourceManaged { src => src / "test" / "unit" / "js" / "test.dependencies.js" }
 
 jasmineRequireJsFile <+= resourceManaged { src => src / "test" / "js-lib" / "require-2.0.6.js" }
 
-jasmineRequireConfFile <+= resourceManaged { src => src / "test" / "js" / "require.conf.js" }
+jasmineRequireConfFile <+= resourceManaged { src => src / "test" / "unit" / "js" / "require.conf.js" }
 
 (test in Test) <<= (test in Test) dependsOn (jasmine)
 
